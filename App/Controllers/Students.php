@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Student;
+use \Core\View;
+
 
 /**
  * Student controller
@@ -15,9 +18,15 @@ class Students extends \Core\Controller
      */
     public function indexAction()
     {
-        echo 'Hello from the index action in the Student controller!';
-        echo '<p>Query string parameters: <pre>' .
-             htmlspecialchars(print_r($_GET, true)) . '</pre></p>';
+        $students = Student::getAll();
+
+        
+        View::renderTemplate('Student/index.html', [
+           'students' => $students
+         ]); 
+
+         /*  var_dump($students);  */
+
     }
 
     /**

@@ -1,0 +1,9 @@
+[08-Jul-2022 23:47:39 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it'
+Stack trace: #0 C:\xampp\htdocs\mvc_php_pro\App\Models\Post.php(28): PDO->__construct('mysql:host=loca...', 'root', 'secret')
+#1 C:\xampp\htdocs\mvc_php_pro\App\Controllers\Posts.php(23): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\mvc_php_pro\Core\Controller.php(48): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\mvc_php_pro\Core\Router.php(121): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\mvc_php_pro\public\index.php(50): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\mvc_php_pro\App\Models\Post.php' on line 28

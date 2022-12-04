@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
-use Core\View;
+use \Core\View;
 
 /**
  * Home controller
+ *
+ * 
  */
 class Home extends \Core\Controller
 {
@@ -17,8 +19,8 @@ class Home extends \Core\Controller
      */
     protected function before()
     {
-        echo "(before) ";
-        //return false; it will not be executed if it will be false, it be usufull if user is logged in or similiar
+        //echo "(before) ";
+        //return false;
     }
 
     /**
@@ -28,7 +30,7 @@ class Home extends \Core\Controller
      */
     protected function after()
     {
-        echo " (after)";
+        //echo " (after)";
     }
 
     /**
@@ -38,6 +40,7 @@ class Home extends \Core\Controller
      */
     public function indexAction()
     {
-      View::render('Home/index.php');
+     
+        View::renderTemplate('Home/index.html');
     }
-  }
+}

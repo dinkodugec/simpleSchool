@@ -4,10 +4,8 @@ namespace Core;
 
 /**
  * Router
+ *
  * 
- * router is component which takes request url and decide what to do
- * 
- * central part of framework
  */
 class Router
 {
@@ -16,7 +14,13 @@ class Router
      * Associative array of routes (the routing table)
      * @var array
      */
-    protected $routes = [];  //routing table, which is ass array
+    protected $routes = [];
+
+    /**
+     * Parameters from the matched route
+     * @var array
+     */
+    protected $params = [];
 
     /**
      * Add a route to the routing table
@@ -26,21 +30,21 @@ class Router
      *
      * @return void
      */
-    public function add($route, $params = [])  //  $route - name of route, $params - list of parametars;controllers, action etc
+    public function add($route, $params = [])
     {
-       // Convert the route to a regular expression: escape forward slashes
-       $route = preg_replace('/\//', '\\/', $route);
+        // Convert the route to a regular expression: escape forward slashes
+        $route = preg_replace('/\//', '\\/', $route);
 
-       // Convert variables e.g. {controller}
-       $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
+        // Convert variables e.g. {controller}
+        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
 
-      // Convert variables with custom regular expressions e.g. {id:\d+}
-      $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        // Convert variables with custom regular expressions e.g. {id:\d+}
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
 
-       // Add start and end delimiters, and case insensitive flag
-       $route = '/^' . $route . '$/i';
+        // Add start and end delimiters, and case insensitive flag
+        $route = '/^' . $route . '$/i';
 
-       $this->routes[$route] = $params;
+        $this->routes[$route] = $params;
     }
 
     /**
@@ -48,12 +52,12 @@ class Router
      *
      * @return array
      */
-    public function getRoutes() //geting routing table
+    public function getRoutes()
     {
         return $this->routes;
     }
 
-     /**
+    /**
      * Match the route to the routes in the routing table, setting the $params
      * property if a route is found.
      *
@@ -63,33 +67,21 @@ class Router
      */
     public function match($url)
     {
-         /*    foreach ($this->routes as $route => $params) {
-            if ($url == $route) {    //very simple string comparision, if the route matching route in routing table
+        foreach ($this->routes as $route => $params) {
+            if (preg_match($route, $url, $matches)) {
+                // Get named capture group values
+                foreach ($matches as $key => $match) {
+                    if (is_string($key)) {
+                        $params[$key] = $match;
+                    }
+                }
+
                 $this->params = $params;
                 return true;
             }
-        }  */
-
-      // Match to the fixed URL format /controller/action
-    /*    $reg_exp = "/^(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/"; */
-
-    foreach ($this->routes as $route => $params) {
-        if (preg_match($route, $url, $matches)) {
-            // Get named capture group values
-            //$params = [];
-
-            foreach ($matches as $key => $match) {
-                if (is_string($key)) {
-                    $params[$key] = $match;
-                }
-            }
-
-            $this->params = $params;
-            return true;
         }
-    }
 
-       return false;
+        return false;
     }
 
     /**
@@ -102,7 +94,7 @@ class Router
         return $this->params;
     }
 
-     /**
+    /**
      * Dispatch the route, creating the controller object and running the
      * action method
      *
@@ -112,32 +104,30 @@ class Router
      */
     public function dispatch($url)
     {
-
         $url = $this->removeQueryStringVariables($url);
 
         if ($this->match($url)) {
             $controller = $this->params['controller'];
-            $controller = $this->convertToStudlyCaps($controller); /* convert to, example: PostController */
-            /* $controller = "App\Controllers\\$controller"; */
+            $controller = $this->convertToStudlyCaps($controller);
             $controller = $this->getNamespace() . $controller;
 
             if (class_exists($controller)) {
-                $controller_object = new $controller($this->params);  //when creating passing route parameters from route..via __construct  :)
+                $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];
-                $action = $this->convertToCamelCase($action); 
+                $action = $this->convertToCamelCase($action);
 
-                if (is_callable([$controller_object, $action])) {  //method can exists but can be private or protected, so ne callable
+                if (is_callable([$controller_object, $action])) {
                     $controller_object->$action();
 
                 } else {
-                    echo "Method $action (in controller $controller) not found";
+                    throw new \Exception("Method $action (in controller $controller) not found");
                 }
             } else {
-                echo "Controller class $controller not found";
+                throw new \Exception("Controller class $controller not found");
             }
         } else {
-            echo 'No route matched.';
+            throw new \Exception('No route matched.', 404);
         }
     }
 
@@ -190,7 +180,6 @@ class Router
      *
      * @return string The URL with the query string variables removed
      */
-
     protected function removeQueryStringVariables($url)
     {
         if ($url != '') {
@@ -206,7 +195,7 @@ class Router
         return $url;
     }
 
-     /**
+    /**
      * Get the namespace for the controller class. The namespace defined in the
      * route parameters is added if present.
      *
@@ -222,8 +211,4 @@ class Router
 
         return $namespace;
     }
-
-    
-
-    
 }
