@@ -28,7 +28,7 @@ class Student
             $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",
                           $username, $password);
 
-            $stmt = $db->query('SELECT id, name, surname, email FROM student');
+            $stmt = $db->query('SELECT id, name, surname, image, imgPath, email FROM student');
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
          
 

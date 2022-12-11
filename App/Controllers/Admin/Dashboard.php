@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-
+use App\Models\Student;
 use \Core\View;
 
 
@@ -28,6 +28,23 @@ class Dashboard extends \Core\Controller
         View::renderTemplate('Admin/Dashboard.html');
     }
 
+      /**
+   * Add a new Student
+   *
+   * @return void
+   */
+  public function addNewStudentAction()
+  {
+
+     View::render('Admin/addNewStudent.html');
+
+  }
+
+
+
+
+
+  
 
 
     
