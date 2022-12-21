@@ -91,6 +91,11 @@ class User extends \Core\Model
            $this->errors[] = 'Password must match confirmation';
        }
 
+       //email exists allready
+       if ($this->emailExists($this->email)) {
+        $this->errors[] = 'email already taken';
+    }
+
        if (strlen($this->password) < 6) {
            $this->errors[] = 'Please enter at least 6 characters for the password';
        }
@@ -102,5 +107,25 @@ class User extends \Core\Model
        if (preg_match('/.*\d+.*/i', $this->password) == 0) {
            $this->errors[] = 'Password needs at least one number';
        }
+    }
+
+      /**
+     * See if a user record already exists with the specified email
+     *
+     * @param string $email email address to search for
+     *
+     * @return boolean  True if a record already exists with the specified email, false otherwise
+     */
+    protected function emailExists($email)
+    {
+        $sql = 'SELECT * FROM users WHERE email = :email';   //selecting email matching argument in method, :email named parametaer
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch() !== false;  //PDO fetch() return false if record is not find
     }
 }
