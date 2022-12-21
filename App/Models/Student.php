@@ -5,11 +5,11 @@ namespace App\Models;
 use PDO;
 
 /**
- * Post model
+ * Student model
  *
  * 
  */
-class Student
+class Student extends \Core\Model
 {
 
     /**
@@ -25,11 +25,14 @@ class Student
         $password = '';
     
         try {
-            $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",
-                          $username, $password);
+           /*  $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",
+                          $username, $password); */
+
+           $db = static::getInstance();
 
             $stmt = $db->query('SELECT id, name, surname, image, imgPath, email FROM student');
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+       /*      $results = $stmt->fetch(PDO::FETCH_OBJ); */ //return object
          
 
             return $results;

@@ -25,7 +25,7 @@ class Students extends \Core\Controller
            'students' => $students
          ]); 
 
-        /*   var_dump($students);   */
+        var_dump($students);  
 
     }
 
@@ -37,9 +37,11 @@ class Students extends \Core\Controller
     public function CreateNewAction()
     {
        
-     /*  $student = new Student($_POST); */
-
+       $student = new Student($_POST); 
+       echo "<pre>";
       var_dump($_FILES);
-      die();
+      echo "</pre>";  die(); 
+     
+     
     }
 }

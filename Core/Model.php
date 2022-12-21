@@ -10,27 +10,37 @@ use App\Config;
  *
  * 
  */
-abstract class Model
+ class Model
 {
 
-    /**
-     * Get the PDO database connection
-     *
-     * @return mixed
-     */
-    protected static function getDB()
+    protected static $instance;
+
+
+    private static $dsn = 'mysql:host=localhost;dbname=skola';
+    
+    private static $username = 'root';
+    
+    private static $password = '';
+    
+    private function __construct() {
+    try {
+    self::$instance = new PDO(self::$dsn, self::$username, self::$password);
+    } catch (\PDOException $e) {
+    echo "MySql Connection Error: " . $e->getMessage();
+    }
+    }
+    
+    
+    
+    public static function getInstance() 
     {
-        static $db = null;
-
-        if ($db === null) {
-            $dsn = 'mysql:host=' . Config::DB_HOST . ';dbname=' .
-                   Config::DB_NAME . ';charset=utf8';
-            $db = new PDO($dsn, Config::DB_USER, Config::DB_PASSWORD);
-
-            // Throw an Exception when an error occurs
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-
-        return $db;
+              if (!self::$instance) {
+              new Model();
+          }
+    
+          return self::$instance;
+    
     }
 }
+
+/*  http://giuffre.github.io/PHP-Mysql-how-to-optimize-a-connection/  */
