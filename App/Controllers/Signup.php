@@ -27,12 +27,22 @@ class Signup extends \Core\Controller
      */
     public function createAction()
     {
-        var_dump($_POST); //dumping content of $_POST array
+       /*  var_dump($_POST); */ //dumping content of $_POST array
 
-        $user = new User($_POST);
+        $user = new User($_POST);  //passing arguments like this will, when you creating new object will invoke __construct
 
-      $user->save();
+                if( $user->save()){
+                    
+                    View::renderTemplate('Signup/success.html');
 
-      View::renderTemplate('Signup/success.html');
+                } else {
+
+                    var_dump($user->errors);
+                    
+                }
+     
+     
+
+     
     }
 }
