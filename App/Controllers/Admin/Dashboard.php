@@ -36,7 +36,7 @@ class Dashboard extends \Core\Controller
   public function addNewStudentAction()
   {
 
-     View::render('Admin/addNewStudent.html');
+     View::renderTemplate('Admin/addNewStudent.html');
 
   }
 

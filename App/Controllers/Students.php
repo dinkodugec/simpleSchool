@@ -40,8 +40,11 @@ class Students extends \Core\Controller
         $student = new Student($_POST); 
 
         if($student->addStudent()){
-
-            
+          View::renderTemplate('Admin/success.html');
+        } else {
+            View::renderTemplate('Admin/addNewStudent.html', [
+                'student' => $student //passing user model
+              ]); 
         }
 
     

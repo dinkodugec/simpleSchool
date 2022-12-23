@@ -12,6 +12,30 @@ use PDO;
 class Student extends \Core\Model
 {
 
+       /**
+     * Error messages
+     *
+     * @var array
+     */
+    public $errors = [];
+
+
+    
+  /**
+   * Class constructor
+   *
+   * @param array $data  Initial property values
+   *
+   * @return void
+   */
+  public function __construct($data)
+  {
+    foreach ($data as $key => $value) {      
+      $this->$key = $value;
+    };
+
+  }
+
     /**
      * Get all the posts as an associative array
      *
@@ -43,10 +67,16 @@ class Student extends \Core\Model
     }
 
 
-    public static function addStudent()
+    public  function addStudent()
 
     {
-         if(isset($_POST['submit'])){
+        $this->validate();
+
+        if(empty($this->errors))
+        {
+           /*   var_dump($this->errors);
+             die(); */
+            if(isset($_POST['submit'])){
 
                 /*  print_r($_FILES['file']); */
 
@@ -107,7 +137,8 @@ class Student extends \Core\Model
                     $stmt = $db->prepare($sql);
 
                     $result =  $stmt->execute([$name,$surname, $filename,$email]); 
-                  
+                    
+                     return $result;
                   }
 
 
@@ -125,7 +156,65 @@ class Student extends \Core\Model
         echo "</pre>";  die();   */
        
 
-    }  //end if
+        }  //end   if(isset($_POST['submit'])
+
+       }  // end  if(empty($this->errors))
+
+
     
+    }
+
+
+
+
+       /**
+     * Validate current property values, adding valiation error messages to the errors array property
+     *
+     * @return void
+     */
+    public function validate()
+    {
+       // Name
+       if ($this->name == '') {
+           $this->errors[] = 'Name is required';
+       }
+
+          // Name
+          if ($this->surname == '') {
+            $this->errors[] = 'Surname is required';
+        }
+
+       // email address
+       if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
+           $this->errors[] = 'Invalid email';
+       }
+  
+
+       //email exists allready
+       if ($this->emailExists($this->email)) {
+        $this->errors[] = 'email already taken';
+       }
+
+    
+    }
+
+          /**
+     * See if a student record already exists with the specified email
+     *
+     * @param string $email email address to search for
+     *
+     * @return boolean  True if a record already exists with the specified email, false otherwise
+     */
+    protected function emailExists($email)
+    {
+        $sql = 'SELECT * FROM student WHERE email = :email';   //selecting email matching argument in method, :email named parametaer
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch() !== false;  //PDO fetch() return false if record is not find
     }
 }
