@@ -22,7 +22,7 @@ use App\Config;
     
     private static $password = '';
     
-    private function __construct() {
+    public function __construct() {
     try {
     self::$instance = new PDO(self::$dsn, self::$username, self::$password);
     } catch (\PDOException $e) {
