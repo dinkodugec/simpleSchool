@@ -4,4 +4,27 @@
 
 <a href="http://simpleschool.hr:8080/public/index.php?signup/new">Sign up</a>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="thumbnails row">
+      {% for student in students %}
+      <div class="col-xs-6 col-md-3">
+        <!-- responsive element that will activate some media query -->
+        <!--   <a
+         href="http://mvc.hr:8080/comments/index?id={{ post.id }}" 
+          class="thumbnail"
+        > --><a href="/posts/showPost?id={{ post.id }}" class="thumbnail">
+          <img
+            src="../uploads/{{ student.image }}"
+            width="200px;"
+            height="150px"
+            class="homePagePhoto"
+          />
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
 {% endblock %}

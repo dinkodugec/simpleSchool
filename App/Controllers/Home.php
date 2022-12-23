@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Student;
 use \Core\View;
 
 /**
@@ -41,6 +42,10 @@ class Home extends \Core\Controller
     public function indexAction()
     {
      
-        View::renderTemplate('Home/index.html');
+        $students = Student::getAll();
+
+        View::renderTemplate('Home/index.html',[
+           'students' => $students
+    ]);
     }
 }
