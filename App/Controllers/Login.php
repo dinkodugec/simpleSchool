@@ -41,7 +41,9 @@ class Login extends \Core\Controller
 
       } else {
 
-          View::renderTemplate('Login/new.html');
+          View::renderTemplate('Login/new.html', [
+            'email' => $_POST['email'], // when form is redisplayed when authenticate is failed, we can pass email address when render template
+            ]);
       
     }
   }
