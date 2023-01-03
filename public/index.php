@@ -58,6 +58,7 @@ $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('login', ['controller'=>'Login', 'action'=>'new']);
+$router->add('logout', ['controller' => 'Login', 'action' => 'destroy']); //automatic destroy session
 
 
 

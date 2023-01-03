@@ -2,8 +2,8 @@
 
 <h1>Welcome</h1>
 
-{% if session.user_id %} User with ID {{ session.user_id }} is logged in. {%
-else %}
+{% if session.user_id %} User with ID {{ session.user_id }} is logged in.
+<a href="/public/index.php?logout">Log out</a>{% else %}
 <a href="http://simpleschool.hr:8080/public/index.php?login">Log In</a> or
 <a href="http://simpleschool.hr:8080/public/index.php?signup/new">Sign up</a>.
 {% endif %}
