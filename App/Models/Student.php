@@ -139,6 +139,7 @@ class Student extends \Core\Model
                     $result =  $stmt->execute([$name,$surname, $filename,$email]); 
                     
                      return $result;
+                   
                   }
 
 

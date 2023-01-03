@@ -27,7 +27,7 @@ class User extends \Core\Model
    *
    * @return void
    */
-  public function __construct($data)
+  public function __construct($data=[])
   {
     foreach ($data as $key => $value) {      //looping around array and setting key=>value pair as a property of new object
       $this->$key = $value;
@@ -64,6 +64,7 @@ class User extends \Core\Model
     $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
 
       return  $stmt->execute();
+     
      }
  
      return false;
@@ -118,14 +119,32 @@ class User extends \Core\Model
      */
     protected function emailExists($email)
     {
-        $sql = 'SELECT * FROM users WHERE email = :email';   //selecting email matching argument in method, :email named parametaer
+        
+        return static::findByEmail($email) !== false;
+
+    }
+
+    /**
+     * Find a user model by email address
+     *
+     * @param string $email email address to search for
+     *
+     * @return mixed User object if found, false otherwise
+     */
+    public static function findByEmail($email)
+    {
+        $sql = 'SELECT * FROM users WHERE email = :email';
 
         $db = static::getInstance();
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+      
 
-        $stmt->execute();
-
-        return $stmt->fetch() !== false;  //PDO fetch() return false if record is not find
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class()); //we change here so we now get object
+                                      /*   namespace hardcoded 'App\Models\User' */
+   
+         $stmt->execute();
+      
+        return $stmt->fetch();//by default PDO fetch method return an array
     }
 }
