@@ -36,7 +36,12 @@ class Login extends \Core\Controller
 
         if ($user) {
 
-          $this->redirect('http://simpleschool.hr:8080/public/index.php?signup/success');
+        /*   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/public/index.php', true, 303);
+          exit; */
+
+          $_SESSION['user_id'] = $user->id;
+          
+          $this->redirect('/public/index.php');
 
       } else {
 
