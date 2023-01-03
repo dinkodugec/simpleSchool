@@ -30,8 +30,19 @@ class Login extends \Core\Controller
         //here we have email and password comming from the form and we can start authenticate user
         /* echo($_REQUEST['email'] . ', ' . $_REQUEST['password']); */ //output the content of request to see what happend
 
-        $user = User::findByEmail($_POST['email']);
+       /*  $user = User::findByEmail($_POST['email']); */
 
-        var_dump($user);
+        $user = User::authenticate($_POST['email'], $_POST['password']);
+
+        if ($user) {
+
+          header('Location: http://' . $_SERVER['HTTP_HOST'] . '/public/index.php', true, 303);
+          exit;
+
+      } else {
+
+          View::renderTemplate('Login/new.html');
+      
     }
+  }
 }
