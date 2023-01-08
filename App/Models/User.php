@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use App\Token;
 
 /**
  * Example user model
@@ -168,5 +169,53 @@ class User extends \Core\Model
 
         return false;
 
+    }
+
+       /**
+     * Find a user model by ID
+     *
+     * @param string $id The user ID
+     *
+     * @return mixed User object if found, false otherwise
+     */
+    public static function findByID($id)
+    {
+        $sql = 'SELECT * FROM users WHERE id = :id';
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+      /**
+     * Remember the login by inserting a new unique token into the remembered_logins table
+     * for this user record
+     *
+     * @return boolean  True if the login was remembered successfully, false otherwise
+     */
+    public function rememberLogin()
+    {
+        $token = new Token();
+        $hashed_token = $token->getHash();
+
+        $expiry_timestamp = time() + 60 * 60 * 24 * 30;  // 30 days from now
+
+        $sql = 'INSERT INTO remembered_logins (token_hash, user_id, expires_at)
+                VALUES (:token_hash, :user_id, :expires_at)';
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+        $stmt->bindValue(':user_id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $expiry_timestamp), PDO::PARAM_STR);
+
+        return $stmt->execute();
     }
 }

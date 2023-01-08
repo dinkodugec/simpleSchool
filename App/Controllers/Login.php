@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Auth;
 use \Core\View;
 use \App\Models\User;
 
@@ -39,6 +40,8 @@ class Login extends \Core\Controller
       $remeber_me = isset($_POST['remember_me']);
 
         if ($user) {
+
+            Auth::login($user, $remeber_me);
 
         /*   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/public/index.php', true, 303);
           exit; */
