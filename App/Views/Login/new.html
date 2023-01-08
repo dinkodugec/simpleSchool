@@ -27,6 +27,24 @@
     />
   </div>
 
+  <div>
+    <label for="">
+      <input
+        type="checkbox"
+        name="remember_me"
+        {%
+        if
+        remember_me
+        %}
+        checked="checked"
+        {%
+        endif
+        %}
+      />
+      Remember Me
+    </label>
+  </div>
+
   <button type="submit">Log in</button>
 </form>
 

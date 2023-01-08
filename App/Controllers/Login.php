@@ -34,10 +34,16 @@ class Login extends \Core\Controller
 
         $user = User::authenticate($_POST['email'], $_POST['password']);
 
+      /*   var_dump($_POST); */
+
+      $remeber_me = isset($_POST['remember_me']);
+
         if ($user) {
 
         /*   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/public/index.php', true, 303);
           exit; */
+
+          //REMBER the login will be here
 
           session_regenerate_id(true); // Update the current session id with a newly generated one, so that can not be cross site attack
 
@@ -49,6 +55,7 @@ class Login extends \Core\Controller
 
           View::renderTemplate('Login/new.html', [
             'email' => $_POST['email'], // when form is redisplayed when authenticate is failed, we can pass email address when render template
+            'remember_me' => $remeber_me
             ]);
       
     }
