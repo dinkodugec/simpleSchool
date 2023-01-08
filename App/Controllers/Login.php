@@ -39,6 +39,8 @@ class Login extends \Core\Controller
         /*   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/public/index.php', true, 303);
           exit; */
 
+          session_regenerate_id(true); // Update the current session id with a newly generated one, so that can not be cross site attack
+
           $_SESSION['user_id'] = $user->id;
           
           $this->redirect('/public/index.php');

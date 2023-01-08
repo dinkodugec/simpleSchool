@@ -23,7 +23,7 @@ require_once '../vendor/Autoload.php';
         require $root . '/' . str_replace('\\', '/', $class) . '.php';
     }
 }); */
-
+ini_set('session.cookie_lifetime', '864000');  //ten days expire
 /**
  * Error and Exception handling
  */

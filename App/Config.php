@@ -40,4 +40,10 @@ class Config
      */
     /* const SHOW_ERRORS = false;   //user mode */ 
     const SHOW_ERRORS = true;   //dev mode
+
+        /**
+     * Secret key for hashing
+     * @var boolean
+     */
+    const SECRET_KEY = 'dTZlQs7FRVOSSbCoqPqb1glckTet2hVJ';
 }
