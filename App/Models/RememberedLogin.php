@@ -46,4 +46,14 @@ class RememberedLogin extends \Core\Model
     {
         return User::findByID($this->user_id);        
     }
+
+           /**
+     * See if the remember token has expired or not, based on the current system time
+     *
+     * @return boolean True if the token has expired, false otherwise
+     */
+    public function hasExpired()
+    {
+        return strtotime($this->expires_at) < time(); //boolean value if it is expired
+    }
 }
