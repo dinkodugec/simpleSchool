@@ -92,6 +92,8 @@ class Login extends \Core\Controller
         // Finally destroy the session
         session_destroy();
 
+        Auth::forgetLogin();
+
         $this->redirect('/public/index.php');      
     }
 }
