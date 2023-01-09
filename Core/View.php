@@ -52,6 +52,7 @@ class View
           /*   $twig->addGlobal('session', $_SESSION); //add session like global variable */
            /*  $twig->addGlobal('is_logged_in', \App\Auth::isLoggedIn());  */
             $twig->addGlobal('current_user', \App\Auth::getUser()); 
+            $twig->addGlobal('students', \App\Models\Student::getAll()); //students in super global variable
         }
 
         echo $twig->render($template, $args);

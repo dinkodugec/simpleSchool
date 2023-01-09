@@ -25,7 +25,17 @@ class Dashboard extends \Core\Controller
     public function indexAction()
     {
      
-        View::renderTemplate('Admin/Dashboard.html');
+        View::renderTemplate('Admin/Dashboard.html', [
+           
+        ]);
+    }
+
+    public function baseAction()
+    {
+     
+        View::renderTemplate('Admin/baseAdmin.html', [
+           
+        ]);
     }
 
       /**
@@ -37,6 +47,18 @@ class Dashboard extends \Core\Controller
   {
 
      View::renderTemplate('Admin/addNewStudent.html');
+
+  }
+
+        /**
+   * Add a new Student
+   *
+   * @return void
+   */
+  public function allStudentsAction()
+  {
+
+     View::renderTemplate('Admin/Students.html');
 
   }
 
