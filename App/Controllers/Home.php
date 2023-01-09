@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Auth;
 use App\Models\Student;
 use \Core\View;
 
@@ -45,7 +46,8 @@ class Home extends \Core\Controller
         $students = Student::getAll();
 
         View::renderTemplate('Home/index.html',[
-           'students' => $students
+           'students' => $students,
+           'user' => Auth::getUser() //get cuurent user and pass to the view
     ]);
     }
 }
