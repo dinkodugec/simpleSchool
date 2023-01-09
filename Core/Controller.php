@@ -63,7 +63,9 @@ abstract class Controller
      * @return void
      */
     protected function before()
+  
     {
+       
     }
 
     /**
