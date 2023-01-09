@@ -82,7 +82,7 @@ class Auth
      */
     public static function rememberRequestedPage()
     {
-        $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
+        $_SESSION['return_to'] = $_SERVER['REQUEST_URI']; //url from requested page
     }
 
     /**
@@ -92,7 +92,7 @@ class Auth
      */
     public static function getReturnToPage()
     {
-        return $_SESSION['return_to'] ?? '/';
+        return $_SESSION['return_to'] ?? '/public/index.php';
     }
 
     /**

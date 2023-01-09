@@ -51,7 +51,7 @@ class Login extends \Core\Controller
           //REMBER the login will be here
 
           
-          $this->redirect('/public/index.php');
+          $this->redirect(Auth::getReturnToPage());
 
       } else {
 
