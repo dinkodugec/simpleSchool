@@ -41,29 +41,39 @@ class Auth
      */
     public static function logout()
     {
-      // Unset all of the session variables
-      $_SESSION = [];
+       // Unset all of the session variables
+       $_SESSION = [];
 
-      // Delete the session cookie
-      if (ini_get('session.use_cookies')) {
-          $params = session_get_cookie_params();
+       // Delete the session cookie
+       if (ini_get('session.use_cookies')) {
+           $params = session_get_cookie_params();
 
-          setcookie(
-              session_name(),
-              '',
-              time() - 42000,
-              $params['path'],
-              $params['domain'],
-              $params['secure'],
-              $params['httponly']
-          );
-      }
+           setcookie(
+               session_name(),
+               '',
+               time() - 42000,
+               $params['path'],
+               $params['domain'],
+               $params['secure'],
+               $params['httponly']
+           );
+       }
 
-      // Finally destroy the session
-      session_destroy();
+       // Finally destroy the session
+       session_destroy();
 
-      static::forgetLogin();
+       Auth::forgetLogin();
     }
+
+        /**
+     * Return indicator of whether a user is logged in or not
+     *
+     * @return boolean
+     */
+    public static function isLoggedIn()
+    {
+        return isset($_SESSION['user_id']);
+    } 
 
     /**
      * Remember the originally-requested page in the session
@@ -136,7 +146,7 @@ class Auth
 
         if ($cookie) {
 
-            $remembered_login = RememberedLogin::findByToken($cookie);
+            $remembered_login = RememberedLogin::findByToken($cookie);  //if there is coresonding  record for this token
 
             if ($remembered_login) {
 
