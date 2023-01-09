@@ -9,19 +9,9 @@ use \App\Auth;
  * Items controller (example)
 
  */
-class Items extends \Core\Controller
+class Items  extends Authenticated
 {
 
-    /**
-     * Before filter - called before an action method.
-     *
-     * @return void
-     */
-    protected function before()
-  
-    {
-         $this->requireLogin();
-    }
     /**
      * Items index
      *
