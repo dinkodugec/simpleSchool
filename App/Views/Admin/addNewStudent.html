@@ -129,93 +129,6 @@
               </form>
             </div>
           </li>
-
-          <!-- Messages Dropdown Menu -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-comments"></i>
-              <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <a href="#" class="dropdown-item">
-                <!-- Message Start -->
-                <div class="media">
-                  <img
-                    src="adminlte/dist/img/user1-128x128.jpg"
-                    alt="User Avatar"
-                    class="img-size-50 mr-3 img-circle"
-                  />
-                  <div class="media-body">
-                    <h3 class="dropdown-item-title">
-                      Name of Recipient
-                      <span class="float-right text-sm text-danger"
-                        ><i class="fas fa-star"></i
-                      ></span>
-                    </h3>
-                    <p class="text-sm">Call me whenever you can...</p>
-                    <p class="text-sm text-muted">
-                      <i class="far fa-clock mr-1"></i> 4 Hours Ago
-                    </p>
-                  </div>
-                </div>
-                <!-- Message End -->
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-           
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer"
-                >See All Messages</a
-              >
-            </div>
-          </li>
-          <!-- Notifications Dropdown Menu -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-bell"></i>
-              <span class="badge badge-warning navbar-badge">15</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <span class="dropdown-item dropdown-header"
-                >15 Notifications</span
-              >
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-envelope mr-2"></i> 4 new messages
-                <span class="float-right text-muted text-sm">3 mins</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-users mr-2"></i> 8 friend requests
-                <span class="float-right text-muted text-sm">12 hours</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-file mr-2"></i> 3 new reports
-                <span class="float-right text-muted text-sm">2 days</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer"
-                >See All Notifications</a
-              >
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-              <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              data-widget="control-sidebar"
-              data-controlsidebar-slide="true"
-              href="#"
-              role="button"
-            >
-              <i class="fas fa-th-large"></i>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.navbar -->
@@ -286,21 +199,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="" class="nav-link active">
+                    <a
+                      href="/public/index.php?admin/dashboard/allStudents"
+                      class="nav-link active"
+                    >
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Some Content</p>
+                      <p>All Students</p>
                     </a>
                   </li>
+
                   <li class="nav-item">
                     <a href="" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Some Content</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Some Content</p>
+                      <p>Some Content More if you wish</p>
                     </a>
                   </li>
                 </ul>
@@ -948,7 +859,6 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <div class="container-fluid">
-            
             <!-- /.row -->
           </div>
           <!-- /.container-fluid -->
@@ -962,7 +872,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <h1 class="page-header">Add New Student</h1>
-        
+
                   <div class="col-md-6">
                     <!--  <form action="index.php?signup/create" method="post"> if apache config are default -->
                     <form
@@ -986,7 +896,7 @@
                           class="form-control"
                         />
                       </div>
-        
+
                       <div class="form-group">
                         <input
                           type="text"
@@ -995,18 +905,21 @@
                           class="form-control"
                         />
                       </div>
-        
+
                       <div class="form-group">
-                        <input type="file" accept="image/jpeg, image/png" name="file" />
+                        <input
+                          type="file"
+                          accept="image/jpeg, image/png"
+                          name="file"
+                        />
                       </div>
-        
+
                       <input type="submit" name="submit" />
                     </form>
                   </div>
                 </div>
               </div>
             </div>
-         
           </div>
           <!-- /.container-fluid -->
         </section>
@@ -1068,6 +981,5 @@
     <script src="/adminlte/dist/js/pages/dashboard.js"></script>
   </body>
 </html>
-
 
 {% endblock %}
