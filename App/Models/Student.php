@@ -226,7 +226,7 @@ class Student extends \Core\Model
      * @return array
      */
 
-     public static function getOneStudent($id)
+     public static function getOneStudent($id) //id is comming from $_GET['id'] when form is submitted student.index.blade.php
     
         {
     

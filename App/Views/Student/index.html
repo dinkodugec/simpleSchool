@@ -19,7 +19,7 @@
 
 <!-- Predmet Form -->
 <div class="well">
-  <h4>Ocjeni Studenta:</h4>
+  <h4>Ocjeni Studenta: {{ student.name }}</h4>
   <form
     action="http://simpleschool.hr:8080/public/index.php?predmeti/create"
     method="post"
@@ -51,7 +51,7 @@
       />
       5<input type="radio" name="ocjena" value="5" />
     </div>
-    <input type="hidden" name="id" value="{{ id }}" />
+    <input type="hidden" name="id" value="{{ student.id }}" />
     <button type="submit" name="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

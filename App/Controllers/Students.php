@@ -57,8 +57,14 @@ class Students extends \Core\Controller
             $id = $_GET['id'];
 
             $oneStudent = Student::getOneStudent($id);
+           /*  echo "<pre>"; 
+            var_dump( $oneStudent);
+           echo "</pre>";  */
 
             $predmeti = Predmet::getPredmetByStudentId($id);
+          /*   echo "<pre>"; 
+            var_dump( $predmeti);
+           echo "</pre>"; */
 
             View::renderTemplate('Student/index.html', [
                 'student' => $oneStudent,

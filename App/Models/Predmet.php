@@ -79,10 +79,10 @@ class Predmet extends \Core\Model
 
       $result =  $stmt->execute([$naziv, $ocjena, $ocjena_naziv, $student_id]);
 
-      var_dump($result);
-      die();
-
       return $result;
+
+   
+
    
  
  

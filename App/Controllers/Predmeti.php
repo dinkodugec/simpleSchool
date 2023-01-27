@@ -40,12 +40,13 @@ class Predmeti extends \Core\Controller
    
        $predmet = new Predmet($_POST); //passing arguments like this will, when you creating new object will invoke __construct
 
-      /*  var_dump($predmet);
-       die(); */
+       /* echo "<pre>"; 
+        var_dump($predmet);
+       echo "</pre>"; */
 
        if($predmet->save()) {
 
-            $this->redirect('/');
+            $this->redirect('/public/index.php?admin/dashboard/index');
 
        } else{
 
