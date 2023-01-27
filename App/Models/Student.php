@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use PDOException;
 
 /**
  * Student model
@@ -218,4 +219,35 @@ class Student extends \Core\Model
 
         return $stmt->fetch() !== false;  //PDO fetch() return false if record is not find
     }
+
+      /**
+     * Get one student in an associative array / we can change method fetch, in fetchObj so get object back
+     *
+     * @return array
+     */
+
+     public static function getOneStudent($id)
+    
+        {
+    
+
+           try {
+           $db = static::getInstance();
+
+            $stmt = $db->prepare('SELECT id, name, surname, image, email FROM student
+                               WHERE id = ?');
+           $stmt->execute([$id]);
+        
+           $results = $stmt->fetch(PDO::FETCH_ASSOC);  //return values as associative array
+          
+           
+            return $results;
+            
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    
 }

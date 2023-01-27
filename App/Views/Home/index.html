@@ -15,7 +15,10 @@
     <div class="thumbnails row">
       {% for student in students %}
       <div class="col-xs-6 col-md-3">
-        <a href="/posts/showPost?id={{ post.id }}" class="thumbnail">
+        <a
+          href="http://simpleschool.hr:8080/public/index.php?students/showStudent&id={{ student.id }}"
+          class="thumbnail"
+        >
           <img
             src="../uploads/{{ student.image }}"
             width="200px;"

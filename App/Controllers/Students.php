@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Models\Predmet;
 use App\Models\Student;
 use \Core\View;
 
@@ -47,8 +49,27 @@ class Students extends \Core\Controller
               ]); 
         }
 
-    
      
-     
+    }
+
+    public function showStudentAction()
+    {
+            $id = $_GET['id'];
+
+            $oneStudent = Student::getOneStudent($id);
+
+            $predmeti = Predmet::getPredmetByStudentId($id);
+
+            View::renderTemplate('Student/index.html', [
+                'student' => $oneStudent,
+                'predmeti' => $predmeti
+              ]);
+
+
+
+            
+
+            
+        
     }
 }
