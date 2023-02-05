@@ -39,42 +39,159 @@
 </div>
 
 <!-- Predmet Form -->
-<div class="container">
-  <h4>Ocjeni Studenta: {{ student.name }}</h4>
-  <form
-    action="http://simpleschool.hr:8080/public/index.php?predmeti/create"
-    method="post"
-  >
-    <div class="form-group">
-      <label for="ocjena_naziv">Predemt</label>
-      <input type="text" name="naziv" />
+
+<!-- /*********  OCJENI STUDENTA  *******/ -->
+
+<div class="row mb-4">
+  <div class="col"></div>
+  <div class="col-6">
+    <div class="container text-center">
+      <div class="row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              type="text"
+              name="naziv"
+              class="form-control"
+              id="floatingInputGrid"
+              placeholder=""
+              value="{{ student.name }}"
+            />
+            <label for="floatingInputGrid">Ime Studenta</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              type="text"
+              name="naziv"
+              class="form-control"
+              id="floatingInputGrid"
+              placeholder=""
+              value="{{ student.surname }}"
+            />
+            <label for="floatingInputGrid">Prezime Studenta</label>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="ocjena_naziv">Ocjena</label>
-      <select name="ocjena_naziv">
-        <option value="odlican">Odlican</option>
-        <option value="vrlo dobar">Vrlo Dobar</option>
-        <option value="dobar">Dobar</option>
-        <option value="dovoljan">Dovoljan</option>
-        <option value="nedovoljan">Nedovoljan</option>
-      </select>
-    </div>
-    <div class="form-group">
-      1<input type="radio" name="ocjena" value="1" /> 2<input
-        type="radio"
-        name="ocjena"
-        value="2"
-      />
-      3<input type="radio" name="ocjena" value="3" /> 4<input
-        type="radio"
-        name="ocjena"
-        value="4"
-      />
-      5<input type="radio" name="ocjena" value="5" />
-    </div>
-    <input type="hidden" name="id" value="{{ student.id }}" />
-    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
+  <div class="col"></div>
 </div>
+<!-- Form to makea student a grade -->
+<form
+  action="http://simpleschool.hr:8080/public/index.php?predmeti/create"
+  method="post"
+>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+      <div class="container text-center">
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input
+                type="text"
+                name="naziv"
+                class="form-control"
+                id="floatingInputGrid"
+                placeholder=""
+                value=""
+              />
+              <label for="floatingInputGrid">Predmet</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <select
+                class="form-select"
+                name="ocjena_naziv"
+                id="floatingSelectGrid"
+              >
+                <option value="odlican">Odlican</option>
+                <option value="vrlo dobar">Vrlo Dobar</option>
+                <option value="dobar">Dobar</option>
+                <option value="dovoljan">Dovoljan</option>
+                <option value="nedovoljan">Nedovoljan</option>
+              </select>
+              <label for="floatingSelectGrid">Odaberi Ocjenu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+
+  <!--  radio buttons -->
+
+  <div class="container text-center mt-4">
+    <div class="col"></div>
+    <div class="col">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox1"
+          name="ocjena"
+          value="1"
+        />
+        <label class="form-check-label" for="inlineCheckbox1">1</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox2"
+          name="ocjena"
+          value="2"
+        />
+        <label class="form-check-label" for="inlineCheckbox2">2</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox3"
+          name="ocjena"
+          value="3"
+        />
+        <label class="form-check-label" for="inlineCheckbox3">3 </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox3"
+          name="ocjena"
+          value="4"
+        />
+        <label class="form-check-label" for="inlineCheckbox3">4 </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox3"
+          name="ocjena"
+          value="5"
+        />
+        <label class="form-check-label" for="inlineCheckbox3">5 </label>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+  <input type="hidden" name="id" value="{{ student.id }}" />
+
+  <div class="row justify-content-md-center mt-4">
+    <div class="col col-lg-2"></div>
+    <div class="col-md-auto">
+      <button type="submit" name="submit" class="btn btn-primary">
+        Ocjeni Studenta
+      </button>
+    </div>
+    <div class="col col-lg-2"></div>
+  </div>
+</form>
 
 {% endblock %}
