@@ -1,24 +1,45 @@
 {% extends 'base.html' %} {% block title %}Predmet{% endblock %} {% block body%}
 
-<!-- <div class="row">
-  <div class="col-md-12">
-    <div class="thumbnails row">
-      <h3>{{ student.name }}</h3>
-      <div class="col-xs-6 col-md-3">
-        <img
-         src="../uploads/{{ student.image }}" 
-          width="1000px;"
-          height="400px"
-          alt=""
-        />
-      </div>
-      <p>{{ student.name }}</p>
-    </div>
+<div class="student">
+  <div class="picture">
+    <img
+      src="../uploads/{{ student.image }}"
+      width="200px;"
+      height="150px"
+      class="studentPhoto"
+    />
   </div>
-</div> -->
+
+  <div class="about">
+    <h1>{{ student.name }}</h1>
+    <h1>{{ student.surname }}</h1>
+    <h3><h3>{{ student.email }}</h3></h3>
+  </div>
+</div>
+
+<div class="student">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Naziv</td>
+        <td>Ocjena</td>
+        <td>Naziv Ocjene</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for predmet in predmeti %}
+      <tr>
+        <td>{{ predmet.naziv }}</td>
+        <td>{{ predmet.ocjena }}</td>
+        <td>{{predmet.ocjena_naziv }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 <!-- Predmet Form -->
-<div class="well">
+<div class="container">
   <h4>Ocjeni Studenta: {{ student.name }}</h4>
   <form
     action="http://simpleschool.hr:8080/public/index.php?predmeti/create"

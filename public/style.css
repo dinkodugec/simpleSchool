@@ -1,0 +1,12 @@
+.student {
+  display: flex;
+  align-items: stretch;
+  gap: 200px;
+  justify-content: flex-start;
+  margin: 50px 200px 100px 200px;
+}
+
+.studentPhoto {
+  width: 300px;
+  height: 250px;
+}
