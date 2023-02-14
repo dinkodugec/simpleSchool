@@ -108,6 +108,27 @@ class Predmet extends \Core\Model
 
     }
 
+    public static function prosjekByStudent($student_id)
+    {
+      $db = static::getInstance();
+
+      /* $stmt = $db->prepare('SELECT COUNT(*) ocjena FROM predmet WHERE 
+      student_id = ?'); return number ov values in columns */
+
+      $stmt = $db->prepare('SELECT AVG(ocjena) as ocjena FROM predmet WHERE 
+      student_id = ?');  //The AVG() function returns the average value of a numeric column. 
+
+       $stmt ->execute([$student_id]);
+
+       /* $results = $stmt->fetchAll(PDO::FETCH_OBJ); here is object*/
+       $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+     /*    var_dump($results);
+       die;  
+ */
+      return $results;
+
+    }
+
  
 
 }

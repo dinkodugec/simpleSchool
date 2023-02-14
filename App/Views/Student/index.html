@@ -36,11 +36,13 @@
       {% endfor %}
     </tbody>
     <tfoot>
+      {% for pro in prosjeci %}
       <tr>
         <td><mark>Prosjek</mark></td>
-        <td>---Prosjek---</td>
+        <td><mark>{{ pro.ocjena}}</mark></td>
         <td></td>
       </tr>
+      {% endfor %}
     </tfoot>
   </table>
 </div>

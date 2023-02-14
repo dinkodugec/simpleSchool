@@ -66,9 +66,21 @@ class Students extends \Core\Controller
             var_dump( $predmeti);
            echo "</pre>"; */
 
+           $prosjeci = Predmet::prosjekByStudent($id);
+         /*    echo "<pre>"; 
+             var_dump( $prosjeci);
+             die();
+            echo "</pre>";   
+
+
+          /*   array(1) {
+              ["AVG(ocjena)"]=>
+              string(6) "4.6667" */
+
             View::renderTemplate('Student/index.html', [
                 'student' => $oneStudent,
-                'predmeti' => $predmeti
+                'predmeti' => $predmeti,
+                'prosjeci' => $prosjeci
               ]);
 
               
