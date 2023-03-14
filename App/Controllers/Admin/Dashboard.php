@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Models\Razred;
 use App\Models\Student;
 use \Core\View;
 
@@ -46,7 +47,12 @@ class Dashboard extends \Core\Controller
   public function addNewStudentAction()
   {
 
-     View::renderTemplate('Admin/addNewStudent.html');
+   $razredi = Razred::getAll();
+
+     View::renderTemplate('Admin/addNewStudent.html' , [
+      'razredi' =>  $razredi
+   ]); 
+   
 
   }
 
@@ -59,6 +65,19 @@ class Dashboard extends \Core\Controller
   {
 
      View::renderTemplate('Admin/Students.html');
+
+  }
+
+
+          /**
+   * Add a new Class Room
+   *
+   * @return void
+   */
+  public function addNewClassRoomAction()
+  {
+
+     View::renderTemplate('Admin/addNewClassRoom.html');
 
   }
 

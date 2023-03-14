@@ -15,15 +15,17 @@ class Razred extends \Core\Model
      */
     public static function getAll()
     {
+            
      
            $db = static::getInstance();
 
-            $stmt = $db->query('SELECT id, student_id, ucitelj_id, naziv FROM razred');
+            $stmt = $db->query('SELECT id, naziv, ime_ucitelj, prezime_ucitelj FROM razred');
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
       
         
             return $results;
 
+  
     }
             
      

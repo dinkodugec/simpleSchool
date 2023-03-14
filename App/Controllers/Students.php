@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Predmet;
+use App\Models\Razred;
 use App\Models\Student;
 use \Core\View;
 
@@ -38,18 +39,20 @@ class Students extends \Core\Controller
      */
     public function CreateNewAction()
     {
-   
+          var_dump($_POST); die();
+    
         $student = new Student($_POST); 
-
+    
         if($student->addStudent()){
           View::renderTemplate('Admin/success.html');
         } else {
             View::renderTemplate('Admin/addNewStudent.html', [
+              
                 'student' => $student //passing user model
-              ]); 
+            ]);
         }
 
-     
+  
     }
 
     public function showStudentAction()

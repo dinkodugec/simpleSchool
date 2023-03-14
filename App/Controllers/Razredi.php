@@ -21,9 +21,9 @@ class Razredi extends \Core\Controller
     public function indexAction()
     {
         $razredi = Razred::getAll();
-      /*   var_dump($razredi); 
-        die();
- */
+      /*    var_dump($razredi); 
+        die(); */
+ 
         
         View::renderTemplate('Razred/index.html', [
            'razredi' => $razredi
@@ -31,6 +31,21 @@ class Razredi extends \Core\Controller
 
  
 
+    }
+
+    /**
+     * Show the razred page
+     *
+     * @return void
+     */
+
+    public function showRazredAction()
+    {
+
+      $id = $_GET['id'];
+   
+
+      
     }
 
 

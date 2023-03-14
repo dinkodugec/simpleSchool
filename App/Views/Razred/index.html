@@ -6,17 +6,20 @@
     <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
       <div class="card">
         <figure class="figure">
-          <img
-            src="http://via.placeholder.com/640x360"
-            class="figure-img img-fluid rounded"
-            alt="A generic square placeholder image with rounded corners in a figure."
-          />
-          <figcaption class="figure-caption">
-            A caption for the above image.
-          </figcaption>
+          <a
+            href="http://simpleschool.hr:8080/public/index.php?razredi/showRazred&id={{ razred.id }}"
+          >
+            <img
+              src="http://via.placeholder.com/640x360"
+              class="figure-img img-fluid rounded"
+              alt="A generic square placeholder image with rounded corners in a figure."
+          /></a>
         </figure>
         <div class="card-body">
           <h5 class="d-inline"><b>{{ razred.naziv }}</b></h5>
+          <figcaption class="figure-caption">
+            Učitelj {{ razred.ime_ucitelj}} {{ razred.prezime_ucitelj}}
+          </figcaption>
         </div>
       </div>
     </div>

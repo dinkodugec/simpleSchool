@@ -953,6 +953,23 @@
                         />
                       </div>
 
+                      <div class="col-md">
+                        <div class="form-floating">
+                          <select
+                            class="form-select"
+                            name="razred_id"
+                            id="floatingSelectGrid"
+                          >
+                            {% for razred in razredi %}
+                            <option value="{{ razred.id }}">
+                              {{ razred.naziv }}
+                            </option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingSelectGrid">Odaberi Ocjenu</label>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <input
                           type="file"
