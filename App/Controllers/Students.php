@@ -39,7 +39,7 @@ class Students extends \Core\Controller
      */
     public function CreateNewAction()
     {
-          var_dump($_POST); die();
+        
     
         $student = new Student($_POST); 
     

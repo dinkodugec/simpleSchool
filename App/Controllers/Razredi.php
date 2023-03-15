@@ -29,10 +29,29 @@ class Razredi extends \Core\Controller
            'razredi' => $razredi
          ]); 
 
- 
-
     }
 
+        /**
+     * Create razred
+     *
+     * @return void
+     */
+    public function CreateNewAction()
+    {
+          
+    
+        $razredi = new Razred($_POST); 
+    
+        if($razredi->save()){
+          View::renderTemplate('Admin/Dashboard.html' , [  
+            'razredi' => $razredi
+          ]);
+          
+        } else {
+            View::renderTemplate('Admin/addNewClassRoom.html');
+        }
+
+    }
     /**
      * Show the razred page
      *
