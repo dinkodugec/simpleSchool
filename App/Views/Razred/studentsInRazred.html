@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title %}Studenti u razredu{% endblock %} {%
+block body%}
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Naziv</td>
+        <td>Ocjena</td>
+        <td>Naziv Ocjene</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in studentiURazredu %}
+      <tr>
+        <td>{{ student.name}}</td>
+        <td>{{ student.surname }}</td>
+        <td></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

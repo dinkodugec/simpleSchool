@@ -246,5 +246,33 @@ class Student extends \Core\Model
         }
     }
 
+    public static function studentInRazred($id)
+    {
+
+        try {
+            $db = static::getInstance();
+ 
+             $stmt = $db->prepare("SELECT student.id, student.name, student.surname, student.image, student.email, student.razred_id, razred.id
+                                    FROM student
+                                    JOIN razred on student.razred_id = razred.id
+                                    WHERE  student.razred_id = ? 
+                                    AND   student.razred_id = razred.id");
+                                   
+            $stmt->execute([$id]);
+         
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+           
+          return $results;
+     
+    
+             
+             
+         } catch (PDOException $e) {
+             echo $e->getMessage();
+         }
+
+
+    }
+
     
 }
