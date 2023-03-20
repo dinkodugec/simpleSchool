@@ -31,14 +31,22 @@
               <a class="nav-link active" href="#">Učenici</a>
             </li>
           
+            <li class="nav-item ml-4">
+              {% if current_user %}
+              <a class="nav-link active">Bok {{ current_user.name }}<span>&#9786;</span> </a>
+              {% endif %}
+            </li>
+
             <li class="nav-item">
               <a class="nav-link disabled">Samo za admina</a>
             </li>
           </ul>
+          
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Pretraži vijesti" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Pretraži</button>
           </form>
+          
         </div>
       </div>
     </nav>
