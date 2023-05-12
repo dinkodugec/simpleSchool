@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Models\Nastavnik;
 use App\Models\Razred;
 use App\Models\Student;
 use \Core\View;
@@ -77,7 +78,12 @@ class Dashboard extends \Core\Controller
   public function addNewClassRoomAction()
   {
 
-     View::renderTemplate('Admin/addNewClassRoom.html');
+ 
+     $nastavnici =  Nastavnik::getAll();
+
+     View::renderTemplate('Admin/addNewClassRoom.html', [
+      'nastavnici' => $nastavnici
+     ]);
 
   }
 

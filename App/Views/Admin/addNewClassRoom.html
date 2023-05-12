@@ -215,31 +215,33 @@ empty %}
                             id="floatingInput"
                             placeholder="Naziv Razreda"
                           />
-                          <label for="floatingInput">Naziv Razreda</label>
                         </div>
                         <div class="form-floating mb-3">
-                          <input
-                            type="text"
-                            class="form-control"
-                            name="ime_ucitelj"
-                            id="floatingInput"
-                            placeholder="Naziv Razreda"
-                          />
-                          <label for="floatingInput">Ime Ucitelja</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                          <input
-                            type="text"
-                            class="form-control"
-                            name="prezime_ucitelj"
-                            id="floatingInput"
-                            placeholder="Naziv Razreda"
-                          />
-                          <label for="floatingInput">Prezime Ucitelja</label>
+                          <div class="form-floating">
+                            <div class="row">
+                              <select
+                                class="form-select"
+                                name="nastavnik_id"
+                                id="floatingSelectGrid"
+                              >
+                                {% for nastavnik in nastavnici %}
+                                <option value="{{ nastavnik.id }}">
+                                  {{ nastavnik.ime_prezime_nastavnik }}
+                                </option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="row">
+                              <label for="floatingSelectGrid"
+                                >Odaberi Nastavnika</label
+                              >
+                            </div>
+                          </div>
                         </div>
 
                         <input
                           class="btn btn-primary mt-4"
+                          name="submit"
                           type="submit"
                           value="Napravi razred"
                         />

@@ -38,10 +38,14 @@ class Razredi extends \Core\Controller
      */
     public function CreateNewAction()
     {
-          
-    
+        /*   var_dump($_POST); 
+            die();    */
+     
         $razredi = new Razred($_POST); 
-    
+
+      /*   var_dump($razredi);
+        die(); */
+     
         if($razredi->save()){
           View::renderTemplate('Admin/Dashboard.html' , [  
             'razredi' => $razredi
