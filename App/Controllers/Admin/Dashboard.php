@@ -87,6 +87,41 @@ class Dashboard extends \Core\Controller
 
   }
 
+  
+          /**
+   * Svi Razredi
+   *
+   * @return void
+   */
+  public function sviRazredi()
+  {
+
+ 
+     $nastavnici =  Nastavnik::getAll();
+
+     View::renderTemplate('Admin/addNewClassRoom.html', [
+      'nastavnici' => $nastavnici
+     ]);
+
+  }
+
+        /**
+     * Prikaz razreda s nastavnikom
+     *
+     * @return void
+     */
+    public function razrediInastavnik()
+    {
+
+      $razrediSNastavnikom = Razred::razredi();
+
+      View::renderTemplate('Admin/razrediSNastavnikom.html', [
+        'razrediSNastavnikom' => $razrediSNastavnikom
+      ]);
+
+
+    }
+
 
 
 

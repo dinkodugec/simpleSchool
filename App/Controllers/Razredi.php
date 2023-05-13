@@ -77,9 +77,9 @@ class Razredi extends \Core\Controller
       ]);
    
       
-
-      
     }
+
+
 
 
 }

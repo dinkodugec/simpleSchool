@@ -57,12 +57,37 @@ class Razred extends \Core\Model
 
       return $result;
 
-   
-
-   
- 
- 
     }
+
+      /**
+     * Svi razredi s nastavnicima u njima
+     *
+     * @return array
+     */
+    public static function razredi()
+    
+      {
+
+        $db = static::getInstance();
+
+        $stmt = $db->query(
+
+          "SELECT r.id, r.naziv, r.nastavnik_id, n.ime_prezime_nastavnik, n.email
+                  FROM razred r 
+                  inner join nastavnik n
+                   on r.nastavnik_id=n.id");
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+    
+        return $results;
+
+
+
+        
+      }
+
+
             
      
 
