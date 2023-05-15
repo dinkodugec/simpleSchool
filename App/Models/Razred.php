@@ -81,11 +81,37 @@ class Razred extends \Core\Model
   
     
         return $results;
-
-
-
         
       }
+
+        /**
+     * Nastavnik u razredu
+     *
+     * @return array
+     */
+    public static function nastavnikURazredu($id)
+    {
+
+         /*  $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);  */
+     
+           $db = static::getInstance();
+
+            $stmt = $db->prepare("SELECT r.id, r.naziv, r.nastavnik_id, n.ime_prezime_nastavnik, n.email
+            FROM razred r 
+            inner join nastavnik n
+             on r.nastavnik_id=n.id
+             WHERE r.nastavnik_id = ?
+             AND   r.nastavnik_id = n.id");
+
+            $stmt->execute([$id]);
+                      
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+         
+            return $results;
+
+  
+    }
+
 
 
             

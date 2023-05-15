@@ -26,7 +26,8 @@ class Razredi extends \Core\Controller
  
         
         View::renderTemplate('Razred/index.html', [
-           'razredi' => $razredi
+           'razredi' => $razredi,
+           
          ]); 
 
     }
@@ -62,24 +63,32 @@ class Razredi extends \Core\Controller
      * @return void
      */
 
-    public function showRazredAction()
-    {
-
-      $id = $_GET['id'];
-
-      $studentiURazredu = Student::studentInRazred($id);
-
-    /*     var_dump($studentiURazredu);
-      die();  */ 
+     public function showRazredAction()
+     {
  
-      View::renderTemplate('Razred/studentsInRazred.html', [
-        'studentiURazredu' => $studentiURazredu
-      ]);
+       $id = $_GET['id'];
+
+     
+
+       $nastavnikURazredu = Razred::nastavnikURazredu($id);
+     /*   var_dump($nastavnikURazredu);
+       die(); */
+
+ 
+       $studentiURazredu = Student::studentInRazred($id);
+ 
+     /*     var_dump($studentiURazredu);
+       die();  */ 
+  
+       View::renderTemplate('Razred/studentsInRazred.html', [
+         'studentiURazredu' => $studentiURazredu,
+         'nastavnikURazredu' => $nastavnikURazredu
+       ]);
+    
+       
+     }
+
+
    
-      
-    }
-
-
-
 
 }

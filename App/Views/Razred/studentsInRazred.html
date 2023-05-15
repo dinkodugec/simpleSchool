@@ -7,17 +7,29 @@ block body%}
       <tr>
         <td>Ime</td>
         <td>Prezime</td>
+        <td>Email</td>
       </tr>
     </thead>
+
     <tbody>
       {% for student in studentiURazredu %}
       <tr>
         <td>{{ student.name}}</td>
         <td>{{ student.surname }}</td>
+        <td>{{ student.email }}</td>
         <td></td>
       </tr>
       {% endfor %}
     </tbody>
+    <tfoot>
+      {% for nastavnik in nastavnikURazredu %}
+      <tr>
+        <td><mark>Nastavnik</mark></td>
+        <td><mark>Ime I Prezime</mark></td>
+        <td><mark>{{ nastavnik.ime_prezime_nastavnik }}</mark></td>
+      </tr>
+      {% endfor %}
+    </tfoot>
   </table>
 </div>
 {% endblock %}
