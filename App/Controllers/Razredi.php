@@ -77,8 +77,8 @@ class Razredi extends \Core\Controller
  
        $studentiURazredu = Student::studentInRazred($id);
  
-     /*     var_dump($studentiURazredu);
-       die();  */ 
+     /*    var_dump($studentiURazredu);
+       die();   */ 
   
        View::renderTemplate('Razred/studentsInRazred.html', [
          'studentiURazredu' => $studentiURazredu,

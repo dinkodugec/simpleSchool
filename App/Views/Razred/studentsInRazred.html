@@ -6,7 +6,6 @@ block body%}
     <thead>
       <tr>
         <td>Ime</td>
-        <td>Prezime</td>
         <td>Email</td>
       </tr>
     </thead>
@@ -14,8 +13,7 @@ block body%}
     <tbody>
       {% for student in studentiURazredu %}
       <tr>
-        <td>{{ student.name}}</td>
-        <td>{{ student.surname }}</td>
+        <td><a class="link-primary" href="http://simpleschool.hr:8080/public/index.php?students/showStudent&id={{ student.id }}">{{ student.name}}</a></td>     
         <td>{{ student.email }}</td>
         <td></td>
       </tr>
@@ -24,12 +22,14 @@ block body%}
     <tfoot>
       {% for nastavnik in nastavnikURazredu %}
       <tr>
-        <td><mark>Nastavnik</mark></td>
-        <td><mark>Ime I Prezime</mark></td>
-        <td><mark>{{ nastavnik.ime_prezime_nastavnik }}</mark></td>
+        <td>Nastavnik</td>
+       <td>
+          {{ nastavnik.ime_prezime_nastavnik }}
+        </td></a>
       </tr>
       {% endfor %}
     </tfoot>
   </table>
 </div>
 {% endblock %}
+

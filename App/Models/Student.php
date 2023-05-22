@@ -252,7 +252,7 @@ class Student extends \Core\Model
         try {
             $db = static::getInstance();
  
-             $stmt = $db->prepare("SELECT student.id, student.name, student.surname, student.image, student.email, student.razred_id, razred.id
+             $stmt = $db->prepare("SELECT student.id, CONCAT (student.name, ' ', student.surname) AS name, student.image, student.email, student.razred_id, razred.id
                                     FROM student
                                     JOIN razred on student.razred_id = razred.id
                                     WHERE  student.razred_id = ? 
@@ -263,7 +263,8 @@ class Student extends \Core\Model
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
            
           return $results;
-     
+
+         
     
              
              
