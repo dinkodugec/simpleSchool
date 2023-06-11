@@ -58,14 +58,18 @@ class Dashboard extends \Core\Controller
   }
 
         /**
-   * Add a new Student
+   * All a new Student
    *
    * @return void
    */
   public function allStudentsAction()
   {
 
-     View::renderTemplate('Admin/Students.html');
+      $students = Student::getAll();
+
+     View::renderTemplate('Admin/Students.html', [
+      'students' => $students
+     ]);
 
   }
 
@@ -93,7 +97,7 @@ class Dashboard extends \Core\Controller
    *
    * @return void
    */
-  public function sviRazredi()
+  public function sviRazrediAction()
   {
 
  
@@ -110,7 +114,7 @@ class Dashboard extends \Core\Controller
      *
      * @return void
      */
-    public function razrediInastavnik()
+    public function razrediInastavnikAction()
     {
 
       $razrediSNastavnikom = Razred::razredi();
@@ -121,6 +125,11 @@ class Dashboard extends \Core\Controller
 
 
     }
+
+
+
+
+
 
 
 

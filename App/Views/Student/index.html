@@ -1,19 +1,24 @@
 {% extends 'base.html' %} {% block title %}Predmet{% endblock %} {% block body%}
 
-<div class="student">
-  <div class="picture">
-    <img
-      src="../uploads/{{ student.image }}"
-      width="200px;"
-      height="150px"
-      class="studentPhoto"
-    />
-  </div>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="student">
+      <div class="col-sm-3">
+        <img
+          src="../uploads/{{ student.image }}"
+          width="300px;"
+          height="300px"
+          class="img-fluid img-thumbnail"
+        />
+      </div>
+      <div class="col">
+        <h1>{{ student.name }}</h1>
+        <h1>{{ student.surname }}</h1>
+        <h3><h3>{{ student.email }}</h3></h3>
+      </div>
 
-  <div class="about">
-    <h1>{{ student.name }}</h1>
-    <h1>{{ student.surname }}</h1>
-    <h3><h3>{{ student.email }}</h3></h3>
+      <div class="col"></div>
+    </div>
   </div>
 </div>
 

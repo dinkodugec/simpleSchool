@@ -13,7 +13,7 @@ block body%}
     <tbody>
       {% for student in studentiURazredu %}
       <tr>
-        <td><a class="link-primary" href="http://simpleschool.hr:8080/public/index.php?students/showStudent&id={{ student.id }}">{{ student.name}}</a></td>     
+        <td>{{ student.name}}</a></td>     
         <td>{{ student.email }}</td>
         <td></td>
       </tr>
@@ -23,8 +23,8 @@ block body%}
       {% for nastavnik in nastavnikURazredu %}
       <tr>
         <td>Nastavnik</td>
-       <td>
-          {{ nastavnik.ime_prezime_nastavnik }}
+       <td> 
+           {{ nastavnik.ime_prezime_nastavnik }}
         </td></a>
       </tr>
       {% endfor %}

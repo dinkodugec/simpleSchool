@@ -60,6 +60,8 @@ class Students extends \Core\Controller
     {
             $id = $_GET['id'];
 
+            
+
             $oneStudent = Student::getOneStudent($id);
            /*  echo "<pre>"; 
             var_dump( $oneStudent);
@@ -86,14 +88,24 @@ class Students extends \Core\Controller
                 'predmeti' => $predmeti,
                 'prosjeci' => $prosjeci
               ]);
-
-              
-
-
-
-            
-
-            
         
     }
+
+    public function deleteStudentAction()
+    {
+ 
+     $id = $_GET['id']; 
+     
+     $student = Student::getOneStudent($id);
+ 
+     if($student){
+        Student::obrisiStudenta($id);
+        
+        View::renderTemplate('Admin/Students.html');
+     }
+ 
+
+ 
+    }
+
 }

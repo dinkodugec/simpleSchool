@@ -275,5 +275,24 @@ class Student extends \Core\Model
 
     }
 
+    public static function obrisiStudenta($id)
+    {
+        try {
+            $db = static::getInstance();
+ 
+             $stmt = $db->prepare("DELETE from student WHERE id = ?");
+                                   
+             $results = $stmt->execute([$id]);
+         
+          return $results;
+
+             
+         } catch (PDOException $e) {
+             echo $e->getMessage();
+         }
+        
+    }
+
+
     
 }

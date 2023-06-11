@@ -882,6 +882,7 @@
                   <td>Surname</td>
                   <td>Image</td>
                   <td>Email</td>
+                  <td>Obrisi Studenta</td>
                 </tr>
               </thead>
               <tbody>
@@ -899,6 +900,12 @@
                     />
                   </td>
                   <td>{{ student.email }}</td>
+                  <td>
+                    <a
+                      href="http://simpleschool.hr:8080/public/index.php?students/deleteStudent&id={{ student.id }}"
+                      >Delete</a
+                    >
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
