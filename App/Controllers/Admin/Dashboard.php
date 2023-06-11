@@ -126,6 +126,20 @@ class Dashboard extends \Core\Controller
 
     }
 
+    
+    public static function sviRazredi()
+    {
+
+     $razredi = Razred::getAll();
+
+     View::renderTemplate('Admin/sviRazredi.html', [
+          'razredi' => $razredi
+     ]);
+
+     
+
+    }
+
 
 
 

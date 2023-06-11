@@ -85,8 +85,25 @@ class Razredi extends \Core\Controller
          'nastavnikURazredu' => $nastavnikURazredu
        ]);
     
-       
      }
+
+     public function deleteRazredAction()
+     {
+ 
+      $id = $_GET['id']; 
+ 
+      $razred = Razred::getOneRazred($id);
+ 
+      if($razred){
+         Razred::obrisiRazred($id);
+ 
+         View::renderTemplate('Admin/Students.html');
+      }
+ 
+ 
+ 
+     }
+
 
 
    

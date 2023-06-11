@@ -59,6 +59,35 @@ class Razred extends \Core\Model
 
     }
 
+          /**
+     * Get one razred in an associative array 
+     *
+     * @return array
+     */
+
+     public static function getOneRazred($id) 
+    
+        {
+    
+
+           try {
+           $db = static::getInstance();
+
+            $stmt = $db->prepare('SELECT id, naziv, nastavnik_id FROM razred
+                               WHERE id = ?');
+           $stmt->execute([$id]);
+        
+           $results = $stmt->fetch(PDO::FETCH_ASSOC);  //return values as associative array
+          
+           
+            return $results;
+            
+            
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
       /**
      * Svi razredi s nastavnicima u njima
      *
@@ -110,6 +139,24 @@ class Razred extends \Core\Model
             return $results;
 
   
+    }
+
+    public static function obrisiRazred($id)
+    {
+        try {
+            $db = static::getInstance();
+
+             $stmt = $db->prepare("DELETE from razred WHERE id = ?");
+
+             $results = $stmt->execute([$id]);
+
+          return $results;
+
+
+         } catch (\PDOException $e) {
+             echo $e->getMessage();
+         }
+
     }
 
 
