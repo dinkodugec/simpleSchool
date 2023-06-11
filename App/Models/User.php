@@ -219,4 +219,32 @@ class User extends \Core\Model
 
         return $stmt->execute();
     }
+
+        /*
+   
+    Admin user
+
+
+    */
+    public static function admin()
+    {
+
+        $email = 'dugecdinko@gmail.com';
+
+        $sql = 'SELECT email FROM users WHERE email = :email';
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue('email', $email, PDO::PARAM_STR); 
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function isAdmin($user)
+    {
+         $user = static::getInstance();
+
+         return $user;
+    }
 }

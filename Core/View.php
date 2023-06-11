@@ -54,6 +54,7 @@ class View
             $twig->addGlobal('current_user', \App\Auth::getUser()); 
             $twig->addGlobal('students', \App\Models\Student::getAll()); //students in super global variable
            /*  add global route for user whi is admin via user_id or some othr way */
+          $twig->addGlobal('is_admin', \App\Auth::isAdmin());   
            
         }
 

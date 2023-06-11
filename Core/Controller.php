@@ -106,4 +106,22 @@ abstract class Controller
             $this->redirect('/public/index.php?login');
         }
     }
+
+        /**
+     * Require the user to be adminin before giving access to the requested page.
+     * Remember the requested page for later.
+     *
+     * @return void
+     */
+    public function requireAdmin()
+    {
+          if(! Auth::isAdmin()){
+
+            Auth::rememberRequestedPage();
+
+            $this->redirect('/');
+          }
+
+    }
+
 }

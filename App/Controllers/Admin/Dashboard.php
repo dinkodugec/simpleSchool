@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Auth;
 use App\Models\Nastavnik;
 use App\Models\Razred;
 use App\Models\Student;
@@ -26,6 +27,10 @@ class Dashboard extends \Core\Controller
      */
     public function indexAction()
     {
+
+      if( !Auth::isAdmin()){
+         $this->redirect('/public/index.php');
+       } 
      
         View::renderTemplate('Admin/Dashboard.html', [
            
