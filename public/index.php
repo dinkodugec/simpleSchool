@@ -13,6 +13,8 @@
  */
 require_once '../vendor/Autoload.php';
 
+error_reporting(E_ALL ^ E_NOTICE);
+
 /**
  * Autoloader
  */
@@ -27,9 +29,9 @@ ini_set('session.cookie_lifetime', '864000');  //ten days expire
 /**
  * Error and Exception handling
  */
-error_reporting(E_ALL); //to see very single error
+/* error_reporting(E_ALL); //to see very single error
 set_error_handler('Core\Error::errorHandler');
-set_exception_handler('Core\Error::exceptionHandler');
+set_exception_handler('Core\Error::exceptionHandler'); */
 
  /* 
 Sessions

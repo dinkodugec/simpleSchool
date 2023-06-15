@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Nastavnik;
 use App\Models\Razred;
 use App\Models\Student;
 use \Core\View;
@@ -65,20 +66,22 @@ class Razredi extends \Core\Controller
 
      public function showRazredAction()
      {
- 
+
+      /* var_dump($_SESSION['user_email']); die();yy */
+
        $id = $_GET['id'];
 
+       $email = $_GET['email'];
      
-
+    
        $nastavnikURazredu = Razred::nastavnikURazredu($id);
      /*   var_dump($nastavnikURazredu);
        die(); */
 
- 
        $studentiURazredu = Student::studentInRazred($id);
- 
-     /*    var_dump($studentiURazredu);
-       die();   */ 
+      /*  print_r($studentiURazredu);
+       die();     */
+
   
        View::renderTemplate('Razred/studentsInRazred.html', [
          'studentiURazredu' => $studentiURazredu,

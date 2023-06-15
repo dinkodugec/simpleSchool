@@ -223,7 +223,7 @@ class Student extends \Core\Model
      * @return array
      */
 
-     public static function getOneStudent($id) //id is comming from $_GET['id'] when form is submitted student.index.blade.php
+     public static function getOneStudent($email) //id is comming from $_GET['id'] when form is submitted student.index.blade.php
     
         {
     
@@ -232,8 +232,37 @@ class Student extends \Core\Model
            $db = static::getInstance();
 
             $stmt = $db->prepare('SELECT id, name, surname, image, email FROM student
-                               WHERE id = ?');
-           $stmt->execute([$id]);
+                               WHERE email = ?');
+           $stmt->execute([$email]);
+        
+           $results = $stmt->fetch(PDO::FETCH_ASSOC);  //return values as associative array
+          
+           
+            return $results;
+            
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+       /**
+     * Get one student in razred
+     *
+     * @return array
+     */
+
+     public static function getOneStudentInRazred($email) 
+    
+        {
+    
+
+           try {
+           $db = static::getInstance();
+
+            $stmt = $db->prepare('SELECT id, name, surname, image, email FROM student
+                               WHERE email = ?');
+           $stmt->execute([$email]);
         
            $results = $stmt->fetch(PDO::FETCH_ASSOC);  //return values as associative array
           

@@ -60,9 +60,9 @@ class Students extends \Core\Controller
     {
             $id = $_GET['id'];
 
-            
+            $email = $_GET['email'];
 
-            $oneStudent = Student::getOneStudent($id);
+            $oneStudent = Student::getOneStudent($email);
            /*  echo "<pre>"; 
             var_dump( $oneStudent);
            echo "</pre>";  */
@@ -106,6 +106,26 @@ class Students extends \Core\Controller
  
 
  
+    }
+
+    public function showStudentInRazredAction()
+    {
+            $id = $_GET['id'];
+
+            $email = $_GET['email'];
+
+            $oneStudent = Student::getOneStudent($email);
+           /*  echo "<pre>"; 
+            var_dump( $oneStudent);
+           echo "</pre>";  */
+
+      
+
+            View::renderTemplate('Student/studentInRazred.html', [
+                'student' => $oneStudent,
+               
+              ]);
+        
     }
 
 }
