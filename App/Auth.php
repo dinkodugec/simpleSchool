@@ -25,6 +25,7 @@ class Auth
 
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email; 
+        $_SESSION['nastavnik'] = $user->uloga; 
 
         if ($remember_me) {
 
@@ -172,6 +173,29 @@ class Auth
                      }
  
      }  
+
+     
+          /**
+     * Return indicator of whether a user is nastavnik
+     *
+     * @return boolean
+     */
+
+    public static  function isNastavnik()
+    {
+              $nastavnik = User::nastavnik();
+
+                if($nastavnik['uloga'] === $_SESSION['nastavnik'] ){
+
+                        return true;
+
+                    } else {
+
+                    return false;
+
+                    }
+
+    }  
  
 
  

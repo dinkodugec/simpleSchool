@@ -247,4 +247,23 @@ class User extends \Core\Model
 
          return $user;
     }
+
+            /*
+         Nastavnik
+    */
+    public static function nastavnik()
+    {
+
+        $uloga = 'nastavnik';
+
+        $sql = 'SELECT uloga FROM users WHERE uloga = :nastavnik';
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue('nastavnik', $uloga, PDO::PARAM_STR); 
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }

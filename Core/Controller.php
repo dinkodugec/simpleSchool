@@ -124,4 +124,21 @@ abstract class Controller
 
     }
 
+            /**
+     * Require the user to be nastavnik before giving access to the requested page.
+     * Remember the requested page for later.
+     *
+     * @return void
+     */
+    public function requireNastavnik()
+    {
+          if(! Auth::isNastavnik()){
+
+            Auth::rememberRequestedPage();
+
+            $this->redirect('/public/index.php');
+          }
+
+    }
+
 }

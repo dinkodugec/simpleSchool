@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Auth;
 use App\Models\Nastavnik;
 use App\Models\Razred;
 use App\Models\Student;
@@ -75,7 +76,7 @@ class Razredi extends \Core\Controller
 
       /* var_dump($_SESSION['user_email']); die();yy */
 
-      
+      $this->requireNastavnik();
 
        $emailNastavnik = $_SESSION['user_email'];
      /*   print_r( $emailNastavnik);

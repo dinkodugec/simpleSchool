@@ -43,6 +43,13 @@ class Home extends \Core\Controller
     public function indexAction()
     {
      
+   $nastavnik = Auth::isNastavnik();
+        /* var_dump($nastavnik); die();  */
+
+        if($nastavnik){
+            $this->redirect('/public/index.php?razredi/showRazredForNastavnikAction');
+        }
+     
         $students = Student::getAll();
 
         View::renderTemplate('Home/index.html',[
