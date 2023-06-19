@@ -304,6 +304,36 @@ class Student extends \Core\Model
 
     }
 
+    public static function studentsInRazred($email)
+    {
+
+        try {
+            $db = static::getInstance();
+ 
+             $stmt = $db->prepare("SELECT student.id as IdStudent, CONCAT (student.name, ' ', student.surname) AS name, student.image, student.email, student.razred_id, razred.id, nastavnik.id 
+                                    FROM student 
+                                    JOIN razred on student.razred_id = razred.id 
+                                    LEFT JOIN nastavnik on razred.nastavnik_id = nastavnik.id 
+                                    WHERE nastavnik.email = ?
+                                    AND student.razred_id = razred.id");
+                                   
+            $stmt->execute([$email]);
+         
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+           
+          return $results;
+
+         
+    
+             
+             
+         } catch (PDOException $e) {
+             echo $e->getMessage();
+         }
+
+
+    }
+
     public static function obrisiStudenta($id)
     {
         try {

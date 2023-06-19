@@ -13,7 +13,7 @@ use \Core\View;
  */
 class Razredi extends \Core\Controller
 {
-
+        
     /**
      * Show the index page
      *
@@ -24,12 +24,15 @@ class Razredi extends \Core\Controller
         $razredi = Razred::getAll();
       /*    var_dump($razredi); 
         die(); */
+       
  
         
         View::renderTemplate('Razred/index.html', [
            'razredi' => $razredi,
            
          ]); 
+
+         /* TODO - this will be acces only for admin */
 
     }
 
@@ -57,7 +60,49 @@ class Razredi extends \Core\Controller
             View::renderTemplate('Admin/addNewClassRoom.html');
         }
 
+          /* TODO - this will be acces only for admin */
+
     }
+
+        /**
+     * Show the razred for nastavnik
+     *
+     * @return void
+     */
+
+     public function showRazredForNastavnikAction()
+     {
+
+      /* var_dump($_SESSION['user_email']); die();yy */
+
+      
+
+       $emailNastavnik = $_SESSION['user_email'];
+     /*   print_r( $emailNastavnik);
+       die();  */
+     
+    
+       $nastavnikURazredu = Razred::nastavnikURazreduViaEmail($emailNastavnik);
+      /*  var_dump($nastavnikURazredu);
+       die();  That is ok*/
+
+       $studentiURazredu = Student::studentsInRazred($emailNastavnik);
+     /*    print_r($studentiURazredu);
+       die();   This is ok  */
+      /*  var_dump($studentiURazredu[0]['IdStudent']);
+       die();  */ 
+
+       $idStudent = $studentiURazredu[0]['IdStudent'];
+   /*     var_dump($idStudent);
+       die(); */
+
+  
+       View::renderTemplate('Razred/studentsInRazredForNastavnik.html', [
+         'studentiURazredu' => $studentiURazredu,
+         'nastavnikURazredu' => $nastavnikURazredu
+       ]);
+    
+     }
     /**
      * Show the razred page
      *

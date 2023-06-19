@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block title %}Studenti u razredu{% endblock %} {%
+  block body%}
+  
+  
+  
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Ime</td>
+          <td>Email</td>
+        </tr>
+      </thead>
+  
+      <tbody>
+        {% for student in studentiURazredu %}
+        
+        <tr>
+          <td> <a
+            href="http://simpleschool.hr:8080/public/index.php?students/showStudent&email={{ student.email }}&id={{ student.IdStudent }}"
+           
+          >{{ student.name}}</td>     
+          <td>{{ student.email }}</td>
+          <td></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+   
+    </table>
+  </div>
+  {% endblock %}
+  
+  
