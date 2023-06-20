@@ -30,6 +30,36 @@ class Nastavnici extends \Core\Controller
 
   }
 
+              /**
+     * Napravi novog nastavnika
+     *
+     * @return void
+     */
+    public function createAction()
+    {
+      /*  var_dump($_POST);  */
+   
+       $nastavnik = new Nastavnik($_POST); //passing arguments like this will, when you creating new object will invoke __construct
+
+    
+   /*     echo "<pre>"; 
+       var_dump($nastavnik);
+      echo "</pre>";  */
+
+       if($nastavnik->saveNastavnik()) {
+
+     
+          $this->redirect('/public/index.php?admin/dashboard/index'); 
+
+       } /* else{
+
+        View::renderTemplate('/');  
+
+       } */
+
+    }
+
+
 
 
 

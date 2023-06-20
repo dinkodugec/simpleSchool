@@ -8,6 +8,23 @@ class Nastavnik extends \Core\Model
 
 {
 
+
+        
+  /**
+   * Class constructor
+   *
+   * @param array $data  Initial property values
+   *
+   * @return void
+   */
+  public function __construct($data=[])
+  {
+    foreach ($data as $key => $value) { 
+      $this->$key = $value;
+    };
+
+  }
+
   /**
      * Get all the nastavnici as an associative array
      *
@@ -27,6 +44,42 @@ class Nastavnik extends \Core\Model
 
   
     }
+
+      /**
+     * Dodaj Nastavnika
+     */
+    public  function saveNastavnik()
+
+    {
+    
+           if ($_SERVER['REQUEST_METHOD'] == 'POST') {    
+            $ime_prezime_nastavnik =$_POST['ime_prezime_nastavnik'];
+            $email = $_POST['email'];
+       
+            $sql = "INSERT INTO nastavnik (ime_prezime_nastavnik, email)
+            VALUES (?,?)";
+    
+          $db = static::getInstance();
+          $stmt = $db->prepare($sql);
+    
+          $result =  $stmt->execute([$ime_prezime_nastavnik, $email]);
+    
+          return $result;
+        
+    
+                
+           }
+
+                      
+                        
+         
+     /*     $student = new Student($_POST); 
+         echo "<pre>";
+        var_dump($_FILES);
+        echo "</pre>";  die();   */
+    }
+
+    
 
            /**
      * Get one nastavnik

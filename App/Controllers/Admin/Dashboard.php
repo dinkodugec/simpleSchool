@@ -162,6 +162,18 @@ class Dashboard extends \Core\Controller
 
     }
 
+            /**
+     * Prikaz za dodaj nastavnika
+     *
+     * @return void
+     */
+    public function dodajNastavnikaAction()
+    {
+
+       View::renderTemplate('Admin/dodajNastavnika.html');
+
+    }
+
 
 
 
