@@ -145,6 +145,22 @@ class Dashboard extends \Core\Controller
 
     }
 
+            /**
+     * Prikaz svih nastavnika
+     *
+     * @return void
+     */
+    public function sviNastavniciAction()
+    {
+
+      $sviNastavniciAction = Nastavnik::getAll();
+
+      View::renderTemplate('Admin/sviNastavnici.html', [
+        'sviNastavniciAction' => $sviNastavniciAction
+      ]);
+
+
+    }
 
 
 

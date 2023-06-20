@@ -28,6 +28,59 @@ class Nastavnik extends \Core\Model
   
     }
 
+           /**
+     * Get one nastavnik
+     *
+     * @return array
+     */
+
+     public static function getOneNastavnik($id) 
+    
+        {
+    
+
+           try {
+           $db = static::getInstance();
+
+            $stmt = $db->prepare('SELECT id, ime_prezime_nastavnik, datum_rodenja, email FROM nastavnik
+                               WHERE id = ?');
+           $stmt->execute([$id]);
+        
+           $results = $stmt->fetch(PDO::FETCH_ASSOC);  //return values as associative array
+          
+           
+            return $results;
+
+           
+            
+            
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+      /**
+     * Obrisi Nastavnika
+     */
+
+    public static function obrisiNastavnika($id)
+    {
+        try {
+            $db = static::getInstance();
+ 
+             $stmt = $db->prepare("DELETE from nastavnik WHERE id = ?");
+                                   
+             $results = $stmt->execute([$id]);
+         
+          return $results;
+
+             
+         } catch (\PDOException $e) {
+             echo $e->getMessage();
+         }
+        
+    }
+
 
 
 }
