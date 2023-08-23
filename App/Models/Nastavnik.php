@@ -36,7 +36,8 @@ class Nastavnik extends \Core\Model
      
            $db = static::getInstance();
 
-            $stmt = $db->query('SELECT id, ime_prezime_nastavnik, datum_rodenja, email FROM nastavnik');
+            $stmt = $db->query('SELECT id, ime_prezime_nastavnik, email FROM nastavnik');
+            $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
       
         

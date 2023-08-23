@@ -33,7 +33,11 @@ class Dashboard extends \Core\Controller
        } 
      
         View::renderTemplate('Admin/Dashboard.html', [
-           
+           'studentCount' => count(\App\Models\Student::getAll()),
+           'razredCount' => count(\App\Models\Razred::getAll()),
+           'nastavnikCount' => count(\App\Models\Nastavnik::getAll()),
+           'userCount' => count(\App\Models\User::getAll())
+          
         ]);
     }
 

@@ -40,6 +40,36 @@ class User extends \Core\Model
        $data                                    $user */
   }
 
+
+      /**
+     * Get all the users as an associative array
+     *
+     * @return array
+     */
+    public static function getAll()
+    {
+  
+    
+        try {
+           /*  $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",
+                          $username, $password); */
+
+           $db = static::getInstance();
+
+            $stmt = $db->query('SELECT id, name, email, uloga FROM users');
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+       /*      $results = $stmt->fetch(PDO::FETCH_OBJ); */ //return object
+         
+
+            return $results;
+        
+            
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
   /**
    * Save the user model with the current property values
    *
@@ -229,7 +259,7 @@ class User extends \Core\Model
     public static function admin()
     {
 
-        $email = 'dugecdinko@gmail.com';
+        $email = 'dugecdinko@gmail.com'; //here I set Email for admin
 
         $sql = 'SELECT email FROM users WHERE email = :email';
 

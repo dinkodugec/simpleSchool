@@ -211,7 +211,7 @@
                       class="nav-link"
                     >
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Nastavnici</p>
+                      <p>Dodaj Nastavnika</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -220,7 +220,7 @@
                       class="nav-link"
                     >
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Some contetn for nastavnike</p>
+                      <p>Svi nastavnici</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -902,15 +902,17 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{ userCount }}</h3>
 
-                    <p>New Orders</p>
+                    <p>Ukupno razreda</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-bag"></i>
                   </div>
-                  <a href="#" class="small-box-footer"
-                    >More info <i class="fas fa-arrow-circle-right"></i
+                  <a
+                    href="http://simpleschool.hr:8080/public/index.php?admin/dashboard/sviRazredi"
+                    class="small-box-footer"
+                    >Razredi<i class="fas fa-arrow-circle-right"></i
                   ></a>
                 </div>
               </div>
@@ -919,15 +921,19 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                   <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3>
+                      {{ studentCount }}<sup style="font-size: 20px"></sup>
+                    </h3>
 
-                    <p>Bounce Rate</p>
+                    <p>Ukupno studenata</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                   </div>
-                  <a href="#" class="small-box-footer"
-                    >More info <i class="fas fa-arrow-circle-right"></i
+                  <a
+                    href="http://simpleschool.hr:8080/public/index.php?admin/dashboard/allStudents"
+                    class="small-box-footer"
+                    >Studenti <i class="fas fa-arrow-circle-right"></i
                   ></a>
                 </div>
               </div>
@@ -936,15 +942,17 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                   <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{ nastavnikCount }}</h3>
 
-                    <p>User Registrations</p>
+                    <p>Ukupno nastavnika</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-person-add"></i>
                   </div>
-                  <a href="#" class="small-box-footer"
-                    >More info <i class="fas fa-arrow-circle-right"></i
+                  <a
+                    href="http://simpleschool.hr:8080/public/index.php?admin/dashboard/sviNastavnici"
+                    class="small-box-footer"
+                    >Nastavnici <i class="fas fa-arrow-circle-right"></i
                   ></a>
                 </div>
               </div>
@@ -953,15 +961,15 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
+                    <h3>{{ userCount }}</h3>
 
-                    <p>Unique Visitors</p>
+                    <p>Ukupno Korisnika</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                   </div>
                   <a href="#" class="small-box-footer"
-                    >More info <i class="fas fa-arrow-circle-right"></i
+                    >Korisnici <i class="fas fa-arrow-circle-right"></i
                   ></a>
                 </div>
               </div>
