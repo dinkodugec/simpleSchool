@@ -296,4 +296,25 @@ class User extends \Core\Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+     /*
+        Promjeni usera u nastavnika
+    */
+    public static function promjeniUNastavnika($id)
+    {
+
+        $sql = "UPDATE users SET uloga = 'nastavnik' WHERE id = :id";
+
+        $db = static::getInstance();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+
 }
