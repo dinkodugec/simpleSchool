@@ -172,11 +172,13 @@
                   <td>{{ user.email }}</td>
                   <td>{{ user.uloga }}</td>
                   <td>
+                    {% if user.uloga == null %}
                     <a
                       href="http://simpleschool.hr:8080/public/index.php?users/promjeniUNastavnika&id={{ user.id }}"
                       class="btn btn-outline-warning"
                       >Promjeni</a
                     >
+                    {% endif %}
                   </td>
                   <td>
                     <a
